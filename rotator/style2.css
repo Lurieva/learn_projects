@@ -1,0 +1,83 @@
+.form {
+  position: relative;
+}
+
+.back, .forward, .delete, .copy {
+  position: absolute;
+	display: inline-block;
+	color: black;
+  text-align: center;
+  padding: .25em .5em;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 55px;
+}
+
+.forward {
+  left: 390px;
+}
+
+.images {
+  position: absolute;
+  left: 80px;
+  top: 10px;
+}
+
+.back, .forward {
+  top: 120px;
+  border: 1px solid rgb(250,172,17);
+  background: rgb(255,212,3) linear-gradient(rgb(255,212,3), rgb(248,157,23));
+  box-shadow: 0 0 0 60px rgba(0,0,0,0) inset, .1em .1em .2em #800;
+  font-weight: bold;
+} 
+
+.copy, .delete {
+  border: 1px solid rgb(250,114,17);
+  background: rgb(255,164,3) linear-gradient(rgb(255,162,3), rgb(248,107,23));
+  box-shadow: 0 0 0 60px rgba(0,0,0,0) inset, .1em .1em .2em #800;
+  position: absolute;
+  top: 280px;
+} 
+
+.copy {
+  position: absolute;
+  margin: 0 0 0 80px;
+}
+
+.back, .forward, .delete, .copy: active {
+	top: .1em;
+  left: .1em;
+  box-shadow: 0 0 0 10px rgba(0,0,0,.05) inset;
+}
+
+.moveRadio {
+	padding: 10px 0 0 250px;
+  position: fixed;
+  top: 220px;
+}
+
+.name {
+	color: blue;
+	font-size: 18px;
+	font-family: 'Bree Serif', serif;
+  text-decoration: underline;
+  text-align: left;
+  position:fixed;
+}
+
+.list {
+  margin: 30px 0 0 5px;
+  background: rgb(255,212,3) linear-gradient(rgb(255,212,3), rgb(240,150,25));;
+  padding: 5px;
+  text-align: left;
+  width: 200px;
+  border: 1px solid black;
+  margin-bottom: 10px;
+  position: absolute;
+  left: 500px;
+  top: 5px;
+  line-height: 1.5;
+  cursor: pointer;
+  list-style: none
+}
+
