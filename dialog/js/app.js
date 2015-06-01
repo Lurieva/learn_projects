@@ -1,5 +1,6 @@
 ;(function(addElem){
  
+ 
    'use strict' 
 
  	var addEvent = function(elem, type, handler) {
