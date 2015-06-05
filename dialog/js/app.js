@@ -1,6 +1,5 @@
 ;(function(addElem){
  
- 
    'use strict' 
 
  	var addEvent = function(elem, type, handler) {
@@ -25,13 +24,12 @@
     this.prototype = new Inheritance();
     this.prototype.constructor = this;
     this.superClass = superClass;
-  };
+  }
 
 
-
-  var FormObj = function(id, title) {
-    this.id = id;
-    this.title = title;
+  var FormObj = function(title, message) {
+    this.title = title||"FormObj";
+    this.message = message || " ";
     this.createFormObj();
   }
 
@@ -45,6 +43,7 @@
     this.form = document.body.addElem("div", {id : "formOverlay"});
     this.form.addElem("div", {className : "close", innerHTML: "&times"});
     this.form.addElem("div", {className : "title", innerHTML: this.title});
+    this.form.addElem("div", {className : "message", innerHTML: this.message});
   };
 
   FormObj.prototype.closeForm = function(form) {
@@ -58,33 +57,31 @@
   };
 
 
-
-
-  var DialogObj = function(){
+  var DialogObj = function(title, message){
+    this.title = title || "DialogObj";
+    this.message = message || " ";
     DialogObj.superClass.apply(this, arguments);
   }
   DialogObj.inheritsFrom(FormObj);   
 
 
 
-  var AlertObj = function(id, title, btnClicker, btnArray) {
+  var AlertObj = function(title, message, btnArray, btnClicker) {
+    this.title = title || "AlertObj";
     this.btnArray = btnArray;
     this.btnClicker = btnClicker;
+
     AlertObj.superClass.apply(this, arguments);
   }
   AlertObj.inheritsFrom(DialogObj);   
 
   AlertObj.prototype.createForm = function() {
     AlertObj.superClass.prototype.createForm.apply(this, arguments);
-    this.groupButton = this.form.addElem("div", {id : "groupButton"}); 
-    //var b=[];
-    //for (var i = 0; i < this.btnArray.length; i += 1) {b.push(this.btnArray[i]); console.log(b)}
-    //for (var i = 0; i < this.btnArray.length; i += 1) {
-      this.groupButton.addElem("div", {className : "button-message", innerHTML: this.btnArray}).onclick = function(){
-        this.btnClicker;
+    this.groupButton = this.form.addElem("div", {id : "groupButton"});
+    this.groupButton.addElem("div", {className : "button-message", innerHTML: this.btnArray}).onclick = function(){
+        console.log(this.btnClicker);
         document.body.removeChild(document.getElementById("formOverlay"));
       } 
-   // }
   }
 
 window.onload = function() {
@@ -95,7 +92,7 @@ window.onload = function() {
         while (target != this) {
           if (target.tagName == 'DIV') {
             switch (target.id) {
-              case "dialog": new DialogObj(802, "DialogObj");
+              case "dialog": new DialogObj();
               break;
               case "window":
               break;
@@ -103,7 +100,7 @@ window.onload = function() {
               break;
               case "actionTool":
               break;
-              case "alert": new AlertObj(801, "AlertObj", function() {console.log("alertObj")}, "OK");
+              case "alert": new AlertObj("","This is message","Ok", function(){console.log('alertObj')});
               break;
               case "error":              
               break;
@@ -111,7 +108,7 @@ window.onload = function() {
               break;
               case "stop":  
               break;
-              case "confirm": new FormObj(801, "FormObj");
+              case "confirm": new FormObj();
 			 	      break;
               case "prompt":  
               break;

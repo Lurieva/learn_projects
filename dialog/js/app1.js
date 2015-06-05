@@ -21,6 +21,7 @@
   		var but = params.buttons;
   		for (var key in but) {
   			(function() {
+          console.log(this);
   			var val = but[key]; 
   			confirmButton.addElem("div", {className : "button-message " + val['className'], innerHTML: val['className'].toUpperCase()}).onclick = function(){
     			if (!val.action) {
@@ -53,7 +54,7 @@ window.onload = function() {
         while (target != this) {
           if (target.tagName == 'DIV') {
             switch (target.id) {
-                case "confirmation": f_confirm({
+                case "confirm": f_confirm({
 										"title" : "Сonfirm", 
 		    							"message" : "Какое-то сообщение", 
 		    							"buttons" : {
