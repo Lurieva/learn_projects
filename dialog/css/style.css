@@ -75,17 +75,24 @@
 
 .title {
     margin: 2px 0 10px 10px;
-    font-size: 16px;
+    font-size: 14px;
     color: black;
     font-family: Georgia, 'Times New Roman', Times, serif;;
 }
 
-/*.message {
-    margin: 10px 0 10px 10px;
+.msgField {
+    position: absolute;
+    margin: 5px 10px 10px 10px;
     font-size: 14px;
     color: black;
 }
-*/
+
+.message {
+    margin-left: 10px;
+    position: relative;
+    float: left;
+}
+
 #groupButton {
     position: absolute;
     bottom: 10px;
@@ -108,4 +115,45 @@
 .button-message:hover {
     border: 1px solid blue;
     border-radius: 2px;
+}
+
+.msgImg {
+    border: 1px solid red;
+    position: relative;
+    float: left;
+    width: 50px;
+    height: 50px;
+}
+
+.errorMsgImg {
+    /*background: url(../img/error.jpg) no-repeat;*/
+    background: url(../img/dialog_warning.png) no-repeat top center;
+}
+
+.infoMsgImg {
+    background: url(../img/info.jpg) no-repeat top center;
+}
+
+.stopMsgImg {
+    background: url(../img/stop.jpeg) no-repeat top center;
+}
+
+.inputField {
+    width: 280px;
+}
+
+.selectList {
+    margin-top: 25px;
+    width: 150px;
+}
+
+#screenOverlay {
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0.1;
+    background: white;
 }
