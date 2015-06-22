@@ -1,4 +1,4 @@
-;(function(addElem){
+;(function(addElem, move, makeDraggable){
  
    'use strict' 
 
@@ -11,7 +11,12 @@
     }
   };
 
-    
+
+  function closeForm(){
+    document.body.removeChild(document.getElementById("formOverlay"));
+    document.body.removeChild(document.getElementById("screenOverlay"));
+  }
+
   Function.prototype.inheritsFrom = function(superClass) {
     var Inheritance = function(){};
     Inheritance.prototype = superClass.prototype;
@@ -28,43 +33,41 @@
   }
 
   FormObj.prototype.createFormObj = function(){
-    this.createForm();
+    this.renderTitle();
+    this.renderBody();
     this.positionFormObj(this.form);
+    dragMaster.makeDraggable(this.form);
     this.blockScreen();
-    this.closeForm(this.form);
+    addEvent(document.querySelector('.close'), 'click', function() {
+      closeForm()
+    });
   };
 
-  FormObj.prototype.createForm = function() {
+  FormObj.prototype.renderTitle = function() {
     this.form = document.body.addElem("div", {id : "formOverlay"});
     this.form.addElem("div", {className : "close", innerHTML: "&times"});
     this.form.addElem("div", {className : "title", innerHTML: this.title});
+  }
+  
+  FormObj.prototype.renderBody = function() {  
     this.msg = this.form.addElem("div", {className : "msgField"});
     this.msg.addElem("div", {className : "message", innerHTML: this.message});
 
     var groupButton = this.form.addElem("div", {id : "groupButton"});
     var but = this.button;
       for (var key in but) { // no need
-        // were are the cheking for standart inner properties of objects
-        (function(){  // i don't like this
+        (function(){
           var val = but[key];
           groupButton.addElem("div", {className : "button-message ", innerHTML : key}).onclick = function(){
             if (!val.action) {
               val.action = function(){};
             }
           val.action();  
-          document.body.removeChild(document.getElementById("formOverlay"));
-          document.body.removeChild(document.getElementById("screenOverlay"));
+          closeForm();
           return false;
           }    
         })();
       }
-  };
-
-  FormObj.prototype.closeForm = function(form) {
-    addEvent(document.querySelector('.close'), 'click', function() {
-      document.body.removeChild(form);
-      document.body.removeChild(document.getElementById("screenOverlay"));
-    });
   };
 
   FormObj.prototype.positionFormObj = function(form) {
@@ -75,9 +78,8 @@
   };
 
   FormObj.prototype.blockScreen = function() {
-      document.body.addElem("div", {id : "screenOverlay"});
+    document.body.addElem("div", {id : "screenOverlay"});
   }
-
 
 
 
@@ -89,8 +91,8 @@
   };
   ToolBoxObj.inheritsFrom(FormObj);
 
-  ToolBoxObj.prototype.createForm = function() {
-    ToolBoxObj.superClass.prototype.createForm.apply(this, arguments);
+  ToolBoxObj.prototype.renderBody = function() {
+    ToolBoxObj.superClass.prototype.renderBody.apply(this, arguments);
     this.select = this.msg.addElem("select", {className: "selectList"});
     for (var i = 0; i < this.array.length; i += 1) {
       this.select.addElem("option", {innerHTML : this.array[i]});
@@ -120,8 +122,8 @@
   }
   ErrorObj.inheritsFrom(AlertObj); 
 
-  ErrorObj.prototype.createForm = function() {
-    ErrorObj.superClass.prototype.createForm.apply(this, arguments);
+  ErrorObj.prototype.renderBody = function() {
+    ErrorObj.superClass.prototype.renderBody.apply(this, arguments);
     var img = this.msg.addElem('div', {className : "msgImg errorMsgImg"});
     this.msg.insertBefore(img, document.querySelector(".message"));
   }
@@ -133,8 +135,8 @@
   }
   InfoObj.inheritsFrom(AlertObj); 
 
-  InfoObj.prototype.createForm = function() {
-    InfoObj.superClass.prototype.createForm.apply(this, arguments);
+  InfoObj.prototype.renderBody = function() {
+    InfoObj.superClass.prototype.renderBody.apply(this, arguments);
     var img = this.msg.addElem('div', {className : " msgImg infoMsgImg"});
     this.msg.insertBefore(img, document.querySelector(".message"));
   }
@@ -146,8 +148,8 @@
   }
   StopObj.inheritsFrom(AlertObj); 
 
-  StopObj.prototype.createForm = function() {
-   StopObj.superClass.prototype.createForm.apply(this, arguments);
+  StopObj.prototype.renderBody = function() {
+   StopObj.superClass.prototype.renderBody.apply(this, arguments);
     var img = this.msg.addElem('div', {className : " msgImg stopMsgImg"});
     this.msg.insertBefore(img, document.querySelector(".message"));
   }
@@ -166,8 +168,8 @@
   }
   PromptObj.inheritsFrom(AlertObj);   
 
-  PromptObj.prototype.createForm = function() { 
-    PromptObj.superClass.prototype.createForm.apply(this, arguments);
+  PromptObj.prototype.renderBody = function() { 
+    PromptObj.superClass.prototype.renderBody.apply(this, arguments);
     this.text = this.msg.addElem("input", {className : "inputField"});
     this.text.focus();
   };
@@ -294,4 +296,4 @@ window.onload = function() {
 }
 
 
-})(window.htmlHelper);
+})(window.htmlHelper/*, window.dragMaster*/);
