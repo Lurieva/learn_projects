@@ -4,7 +4,7 @@
 
     function fixEvent(event) {
         event = event || window.event;
-        if ( event.pageX == null && event.clientX != null ) {
+        if (event.pageX == null && event.clientX != null) {
             var html = document.documentElement;
             var body = document.body;
             event.pageX = event.clientX + (html && html.scrollLeft || body && body.scrollLeft || 0) - (html.clientLeft || 0);
@@ -22,7 +22,7 @@
         var mouseOffset;
   
         function getMouseOffset(target, e) {
-            var docPos  = getPosition(target);
+            var docPos = getPosition(target);
             return {
                 x : e.pageX - docPos.x, 
                 y : e.pageY - docPos.y

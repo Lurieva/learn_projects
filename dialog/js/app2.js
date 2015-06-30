@@ -1,4 +1,4 @@
-;(function(addElem, move, makeDraggable){
+;(function(addElem, makeDraggable){
  
    'use strict' 
 
@@ -39,7 +39,7 @@
     dragMaster.makeDraggable(this.form);
     this.blockScreen();
     addEvent(document.querySelector('.close'), 'click', function() {
-      closeForm()
+      closeForm();
     });
   };
 
@@ -47,7 +47,7 @@
     this.form = document.body.addElem("div", {id : "formOverlay"});
     this.form.addElem("div", {className : "close", innerHTML: "&times"});
     this.form.addElem("div", {className : "title", innerHTML: this.title});
-  }
+  };
   
   FormObj.prototype.renderBody = function() {  
     this.msg = this.form.addElem("div", {className : "msgField"});
@@ -59,6 +59,7 @@
         (function(){
           var val = but[key];
           groupButton.addElem("div", {className : "button-message ", innerHTML : key}).onclick = function(){
+            //(!val.action) ? val.action = function(){} : val.action();
             if (!val.action) {
               val.action = function(){};
             }
@@ -98,7 +99,6 @@
       this.select.addElem("option", {innerHTML : this.array[i]});
     }
   };
-
 
 
   var DialogObj = function(params) {
@@ -296,4 +296,4 @@ window.onload = function() {
 }
 
 
-})(window.htmlHelper/*, window.dragMaster*/);
+})(window.htmlHelper);
