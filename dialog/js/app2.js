@@ -1,4 +1,4 @@
-;(function(addElem, makeDraggable){
+;;(function(){
  
    'use strict' 
 
@@ -7,15 +7,10 @@
     if (elem.addEventListener) {
       elem.addEventListener(type, handler, false);  
     } else {
-      elem.attachEvent("on" + type, handler)
+      elem.attachEvent("on" + type, handler);
     }
   };
 
-
-  function closeForm(){
-    document.body.removeChild(document.getElementById("formOverlay"));
-    document.body.removeChild(document.getElementById("screenOverlay"));
-  }
 
   Function.prototype.inheritsFrom = function(superClass) {
     var Inheritance = function(){};
@@ -23,23 +18,24 @@
     this.prototype = new Inheritance();
     this.prototype.constructor = this;
     this.superClass = superClass;
-  }
+  };
 
 
   var FormObj = function(params) {
-    this.title = params.title||"FormObj";
+    this.title = params.title || "FormObj";
     this.message = params.message || " ";
     this.createFormObj();
-  }
+  };
 
   FormObj.prototype.createFormObj = function(){
-    this.renderTitle();
-    this.renderBody();
-    this.positionFormObj(this.form);
+    var v_this = this;
+    v_this.renderTitle();
+    v_this.renderBody();
+    v_this.positionFormObj(this.form);
     dragMaster.makeDraggable(this.form);
-    this.blockScreen();
-    addEvent(document.querySelector('.close'), 'click', function() {
-      closeForm();
+    v_this.blockScreen();
+    addEvent(document.querySelector('.close'), 'click', function(){
+      v_this.closeForm();
     });
   };
 
@@ -50,39 +46,43 @@
   };
   
   FormObj.prototype.renderBody = function() {  
+    var v_this = this;
     this.msg = this.form.addElem("div", {className : "msgField"});
     this.msg.addElem("div", {className : "message", innerHTML: this.message});
 
-    var groupButton = this.form.addElem("div", {id : "groupButton"});
-    var but = this.button;
-      for (var key in but) { // no need
+    var groupButton = v_this.form.addElem("div", {id : "groupButton"});
+      for (var key in v_this.button) {
         (function(){
-          var val = but[key];
+          var val = v_this.button[key];
           groupButton.addElem("div", {className : "button-message ", innerHTML : key}).onclick = function(){
-            //(!val.action) ? val.action = function(){} : val.action();
             if (!val.action) {
               val.action = function(){};
             }
-          val.action();  
-          closeForm();
-          return false;
+            val.action();  
+            v_this.closeForm();
+            return false;
           }    
         })();
       }
   };
 
+  FormObj.prototype.closeForm = function(){
+    document.body.removeChild(document.getElementById("formOverlay"));
+    document.body.removeChild(document.getElementById("screenOverlay"));
+  };
+
   FormObj.prototype.positionFormObj = function(form) {
     form.style.position = 'absolute';
     var scroll = document.documentElement.scrollTop || document.body.scrollTop;
-    form.style.top = scroll + 100 + 'px'
+    form.style.top = scroll + 100 + 'px';
     form.style.left = Math.floor(document.body.clientWidth/2) - 150 + 'px';
   };
 
   FormObj.prototype.blockScreen = function() {
     document.body.addElem("div", {id : "screenOverlay"});
-  }
+  };
 
-
+ 
 
   var ToolBoxObj = function(params) {
     this.title = params.title || "ToolBoxObj";
@@ -94,17 +94,43 @@
 
   ToolBoxObj.prototype.renderBody = function() {
     ToolBoxObj.superClass.prototype.renderBody.apply(this, arguments);
-    this.select = this.msg.addElem("select", {className: "selectList"});
-    for (var i = 0; i < this.array.length; i += 1) {
-      this.select.addElem("option", {innerHTML : this.array[i]});
+    this.renderSelect(this.msg, this.array);
+  };
+
+  ToolBoxObj.prototype.renderSelect = function(parent, array) {
+    this.select = parent.addElem("select", {className: "selectList"});
+    for (var i = 0; i < array.length; i += 1) {
+      this.select.addElem("option", {innerHTML : array[i]});
     }
   };
 
 
+
+  var ActionToolObj = function(params) {
+    this.title = params.title || "ToolBoxObj";
+    this.button = params.buttons;
+    this.array = params.select;
+    ActionToolObj.superClass.apply(this, arguments);
+  };
+  ActionToolObj.inheritsFrom(FormObj);
+
+  ActionToolObj.prototype.renderBody = function() {
+    ActionToolObj.superClass.prototype.renderBody.apply(this, arguments);
+    this.groupSelect = this.form.addElem("div", {id : "groupSelect"});
+    for (var key in this.array) {
+      this.select = this.groupSelect.addElem("select", {className: "selectList"});
+      for (var i = 0; i < this.array[key].length; i += 1) {
+        this.select.addElem("option", {innerHTML : this.array[key][i]});
+      }
+    }
+  };
+
+  
+
   var DialogObj = function(params) {
     this.title = params.title || "DialogObj";
     DialogObj.superClass.apply(this, arguments);
-  }
+  };
   DialogObj.inheritsFrom(FormObj);   
 
 
@@ -112,60 +138,62 @@
     this.title = params.title || "AlertObj";
     this.button = params.buttons;
     AlertObj.superClass.apply(this, arguments);
-  }
-  AlertObj.inheritsFrom(DialogObj);   
+  };
+  AlertObj.inheritsFrom(DialogObj);  
+
 
 
   var ErrorObj = function(params) {
     this.title = params.title || "ErrorObj";
     ErrorObj.superClass.apply(this, arguments);
-  }
+  };
   ErrorObj.inheritsFrom(AlertObj); 
 
-  ErrorObj.prototype.renderBody = function() {
+
+  ErrorObj.prototype.renderBody= function() {
     ErrorObj.superClass.prototype.renderBody.apply(this, arguments);
     var img = this.msg.addElem('div', {className : "msgImg errorMsgImg"});
     this.msg.insertBefore(img, document.querySelector(".message"));
-  }
+  };
 
 
   var InfoObj = function(params) {
     this.title = params.title || "InfoObj";
     InfoObj.superClass.apply(this, arguments);
-  }
+  };
   InfoObj.inheritsFrom(AlertObj); 
 
   InfoObj.prototype.renderBody = function() {
     InfoObj.superClass.prototype.renderBody.apply(this, arguments);
     var img = this.msg.addElem('div', {className : " msgImg infoMsgImg"});
     this.msg.insertBefore(img, document.querySelector(".message"));
-  }
+  };
 
 
   var StopObj = function(params) {
     this.title = params.title || "StopObj";
     StopObj.superClass.apply(this, arguments);
-  }
+  };
   StopObj.inheritsFrom(AlertObj); 
 
   StopObj.prototype.renderBody = function() {
-   StopObj.superClass.prototype.renderBody.apply(this, arguments);
+    StopObj.superClass.prototype.renderBody.apply(this, arguments);
     var img = this.msg.addElem('div', {className : " msgImg stopMsgImg"});
     this.msg.insertBefore(img, document.querySelector(".message"));
-  }
+  };
 
 
   var ConfirmObj = function(params) {
     this.title = params.title || "ConfirmObj";
     ConfirmObj.superClass.apply(this, arguments);
-  }
+  };
   ConfirmObj.inheritsFrom(AlertObj);   
 
 
   var PromptObj = function(params) {
     this.title = params.title || "ConfirmObj";
     PromptObj.superClass.apply(this, arguments);
-  }
+  };
   PromptObj.inheritsFrom(AlertObj);   
 
   PromptObj.prototype.renderBody = function() { 
@@ -186,8 +214,6 @@ window.onload = function() {
         switch (target.id) {
           case "dialog": new DialogObj("","");
           break;
-          case "window":
-          break;
           case "toolBox": new ToolBoxObj({
                             "title" : "ToolBoxObj",
                             "message" : "Some message",
@@ -205,7 +231,25 @@ window.onload = function() {
                             }
                           }); 
           break;
-          case "actionTool":
+          case "actionTool": new ActionToolObj({
+                              "title" : "ActionToolObj",
+                              "message" : "Some message",
+                              "select" : {
+                                "First" : ["Apple", "Tomato", "Cherry"],
+                                "Second" : ["Red", "Green", "Blue"]
+                                },
+                              "buttons" : {
+                                "Save" : {
+                                  "action" : function(){
+                                    var sel = document.querySelector(".selectList").options.selectedIndex;
+                                    console.log(document.querySelector(".selectList").options[sel].text);
+                                  }
+                                }, 
+                                "Cancel" : {
+                                  "action" : function(){}
+                                }
+                              }
+                            }); 
           break;
           case "alert": new AlertObj({
                           "title" : "AlertObj", 
@@ -226,7 +270,7 @@ window.onload = function() {
                             "Ok" : {
                               "action" : function(){
                                 console.log('You click ok');
-                                }
+                              }
                             }
                           }
                         });            
@@ -264,9 +308,7 @@ window.onload = function() {
                                   console.log('You click ok');
                                 }
                               }, 
-                              "Cancel" : {
-                                "action" : function(){}
-                              }
+                              "Cancel" : {}
                             }
                           });
 			 	  break;
@@ -276,12 +318,10 @@ window.onload = function() {
                             "buttons" : {
                               "Ok" : {
                                 "action" : function(){
-                                  console.log(document.querySelector(".inputField").value);;
+                                  console.log(document.querySelector(".inputField").value);
                                 }
                               }, 
-                              "Cancel" : {
-                                "action" : function(){}
-                              }
+                              "Cancel" : {}
                             }
                           }); 
           break;
@@ -296,4 +336,4 @@ window.onload = function() {
 }
 
 
-})(window.htmlHelper);
+})();

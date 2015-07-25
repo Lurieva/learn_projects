@@ -2,21 +2,6 @@
 
     'use strict'
 
-    function fixEvent(event) {
-        event = event || window.event;
-        if (event.pageX == null && event.clientX != null) {
-            var html = document.documentElement;
-            var body = document.body;
-            event.pageX = event.clientX + (html && html.scrollLeft || body && body.scrollLeft || 0) - (html.clientLeft || 0);
-            event.pageY = event.clientY + (html && html.scrollTop || body && body.scrollTop || 0) - (html.clientTop || 0);
-        }
-        if (!event.which && event.button) {
-            event.which = event.button & 1 ? 1 : (event.button & 2 ? 3 : (event.button & 4 ? 2 : 0));
-        }
-        return event;
-    }
-
-
     var dragMaster = (function() {
         var dragObject;
         var mouseOffset;
@@ -38,7 +23,6 @@
         }
 
         function mouseMove(e){
-            e = fixEvent(e);
             dragObject.style.position = 'absolute';
             dragObject.style.top = e.pageY - mouseOffset.y + 'px';
             dragObject.style.left = e.pageX - mouseOffset.x + 'px';
@@ -46,7 +30,6 @@
         }
 
         function mouseDown(e) {
-            e = fixEvent(e);
             if (e.which != 1) return;
             dragObject = this;
             mouseOffset = getMouseOffset(this, e);
