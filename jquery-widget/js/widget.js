@@ -8,7 +8,6 @@
 		});
 	}
 
-
 	var WidgetBox = function(widgetContainer, widgetData){
 		this.box = $("<div class='box'></div>");
 		this.data = widgetData;
@@ -39,11 +38,11 @@
 		this.box.append(boxContainer);
 		this.box.append("<span class='str-show-details str'>Show details</span>"); 
 		this.box.append("<span class='str-hide-details str hide-slide'>Hide details</span>"); 
-		this.btnContainer = $("<div class='btn-container'></div>");
-		this.btnContainer.append("<div class='btn-back'><span class= 'btn-pointer'></span><span class= 'btn-navig'>Back</span></div>");
-		this.btnContainer.append("<div class='btn-next'><span class= 'btn-pointer'></span><span class= 'btn-navig'>Next</span></div>");
-		this.btnContainer.append("<div class='btn-find'><span class= 'btn-navig'>Find A store</span></div");
-		this.box.append(this.btnContainer);
+		var btnContainer = $("<div class='btn-container'></div>");
+		btnContainer.append("<div class= 'btn-back'><span class= 'btn-pointer-left'></span><span class= 'btn-text btn-navig-left'>Back</span></div>");
+		btnContainer.append("<div class= 'btn-next'><span class= 'btn-pointer-right'></span><span class= 'btn-text btn-navig-right'>Next</span></div>");
+		btnContainer.append("<div class= 'btn-find'><span class= 'btn-pointer-find'></span><span class= 'btn-text-find'> Find A store</span></div");
+		this.box.append(btnContainer);
 	};
 
 
