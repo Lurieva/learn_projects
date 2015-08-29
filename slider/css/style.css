@@ -1,0 +1,35 @@
+.container {
+	width: 200px;
+	height: 255px;
+	position: relative;
+}
+
+.image {
+	z-index: 10;
+}
+
+.div1 {
+	bottom: 1%;
+	width: 50%;
+	opacity: 0;
+	position: absolute;
+	z-index: 100;
+	height: 250px;
+} 
+
+.div2 {
+	bottom: 1%;
+	width: 50%;
+	opacity: 0;
+	left: 50%;
+	float: right;
+	position: absolute;
+	z-index: 100;
+	height: 250px;
+}
+
+.fade-style {
+	opacity: 0.1;
+	display: inline-block;
+	visibility: visible;
+}
