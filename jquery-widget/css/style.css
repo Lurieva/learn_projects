@@ -17,8 +17,7 @@
 }
 
 .box {
-	background-color: #F5F5F5;
-	width: 290px;
+	width: 300px;
 	height: 410px;
 	border: 1px solid #DCDCDC;
 	border-radius: 5px;
@@ -34,7 +33,7 @@
 }
 
 img {
-	width: 280px;
+	width: 290px;
 	height: 150px;
 	margin: 5px 5px 5px 5px;
 	box-shadow: 0 0 5px rgba(0,0,0,0.5);
@@ -72,6 +71,7 @@ img {
 	font-size: 12px;
 	font-weight: bold;
 	position: absolute;
+	left: 2%;
 	bottom: 11%;
 	cursor: pointer
 }
@@ -86,16 +86,18 @@ img {
 
 .btn-container {
 	position: absolute;
-	bottom: 5px;
+	bottom: 4px;
 	cursor: pointer;
 }
 
 .btn-container div {
 	display: inline-block;
-	margin-left: 10px;
+	margin-left: 5px;
 }
 
 .btn-text {
+	position: absolute;
+	margin-top: 5px;
 	font-size: 12px;
 	color: #696969;
 	font-weight: bold;
@@ -103,23 +105,23 @@ img {
 
 .btn-back {
 	width: 70px;
-	height: 20px;
+	height: 26px;
 	display: inline-block;
-	background: url(../img/button_bg_white_left.png) no-repeat;
+	background: url(../img/button_bg_white_left.png) no-repeat;;
 }
 
 .btn-pointer-left {
 	position: absolute;
 	width: 20px;
 	height: 20px;
-	top: 6px;
+	top: 8px;
 	z-index: 10;
 	background: url(../img/btn_ic_gray_left.png) no-repeat;
 	margin-left: 5px;
 }
 
-.btn-pointer-left:hover {
-	background: url(../img/btn_ic_brn_left.png) no-repeat;
+.btn-back:hover {
+	background: url(../img/button_bg_orange_left.png) no-repeat;
 }
 
 .btn-navig-left {
@@ -128,7 +130,7 @@ img {
 
 .btn-next {
 	width: 70px;
-	height: 20px;
+	height: 26px;
 	display: inline-block;
 	background: url(../img/button_bg_white_right.png) no-repeat;
 }
@@ -137,14 +139,14 @@ img {
 	position: absolute;
 	width: 20px;
 	height: 20px;
-	top: 6px;
+	top: 8px;
 	z-index: 10;
 	background: url(../img/btn_ic_gray_right.png) no-repeat;
 	margin-left: 50px;
 }
 
-.btn-pointer-right:hover {
-	background: url(../img/btn_ic_brn_right.png) no-repeat;
+.btn-next:hover {
+	background: url(../img/button_bg_orange_right.png) no-repeat;
 }
 
 .btn-navig-right {
@@ -152,25 +154,34 @@ img {
 }
 
 .btn-find {
+	position: absolute;
+	left: 120%;
 	width: 110px;
-	height: 20px;
+	height: 26px;
 	background: url(../img/button_bg_find.png) no-repeat;
 	float: right;
+	color: #FF7F50;
 }
 
 .btn-pointer-find {
 	position: absolute;
 	width: 20px;
 	height: 20px;
-	top: 6px;
+	top: 22%;
 	z-index: 10;
 	background: url(../img/arrowSide.png) no-repeat;
-	margin-left: 85px;
+	margin-left: 84px;
 }
 
 .btn-text-find {
+	position: absolute;
 	margin-left: 5px;
 	font-size: 12px;
-	color: #FF7F50;
 	font-weight: bold;
+	margin-top: 5px;
+}
+
+.btn-find:hover {
+	background: url(../img/button_bg_orange_find.png) no-repeat;
+	color: white;
 }
