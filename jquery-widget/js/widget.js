@@ -8,10 +8,9 @@
 		});
 	}
 
-	var WidgetBox = function(widgetContainer, widgetData, widgetOptions){
+	var WidgetBox = function(widgetContainer, widgetData){
 		this.box = $("<div>").attr("class", "box");
 		this.data = widgetData;
-		this.options = widgetOptions;
 		widgetContainer.append(this.box);
 		this._init();
 	};
@@ -68,13 +67,14 @@
            			$(".str-show-details").hide();
         			$(".str-hide-details").show();
         			$(".box-note").removeClass('hide-slide');
-        			$(v_this.currentSlide).find("img").hide();
+					$(v_this.currentSlide).find("img").slideToggle("slow");
     			});
 	    		$(".str-hide-details").on("click", function() {
         			$(".str-show-details").show();
         			$(".str-hide-details").hide();
         			$(".box-note").addClass('hide-slide');
-        			$(v_this.currentSlide).find("img").show();
+        			$(v_this.currentSlide).find("img").slideToggle("slow");
+
     			});
 			});
 		},
