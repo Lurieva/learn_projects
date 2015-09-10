@@ -8,9 +8,11 @@
 		});
 	}
 
-	var WidgetBox = function(widgetContainer, widgetData){
+	var WidgetBox = function(widgetContainer, widgetData, widgetAnimation){
 		this.box = $("<div>").attr("class", "box");
 		this.data = widgetData;
+		this.dataAnimation = widgetAnimation;
+		console.log(this.dataAnimation.animationEffect);
 		widgetContainer.append(this.box);
 		this._init();
 	};
@@ -67,13 +69,13 @@
            			$(".str-show-details").hide();
         			$(".str-hide-details").show();
         			$(".box-note").removeClass('hide-slide');
-					$(v_this.currentSlide).find("img").slideToggle("slow");
+					$(v_this.currentSlide).find("img").animate(v_this.dataAnimation.properties, v_this.dataAnimation.options);
     			});
 	    		$(".str-hide-details").on("click", function() {
         			$(".str-show-details").show();
         			$(".str-hide-details").hide();
         			$(".box-note").addClass('hide-slide');
-        			$(v_this.currentSlide).find("img").slideToggle("slow");
+        			$(v_this.currentSlide).find("img").animate(v_this.dataAnimation.properties, v_this.dataAnimation.options);
 
     			});
 			});
