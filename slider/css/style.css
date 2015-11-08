@@ -1,35 +1,42 @@
 .container {
+	width: 99999px;
+}
+
+.container img {
+  width: 200px;
+  height: 255px;
+  display: block;
+}
+
+.gallery {
+	border: 1px solid red;
+	width: 200px;
+  overflow: hidden;
+}
+
+ul {
+  height: 255px;
+  width: 9999px;
+  margin: 0;
+  padding: 0;
+  z-index: 10;
+}
+
+.im {
 	width: 200px;
 	height: 255px;
+}
+
+li {
 	position: relative;
+  list-style: none; 
+  display: inline-block;
 }
 
-.image {
-	z-index: 10;
-}
-
-.div1 {
-	bottom: 1%;
-	width: 50%;
-	opacity: 0;
-	position: absolute;
+.navig  {
+	bottom: 20%;
+	position: fixed;
 	z-index: 100;
 	height: 250px;
 } 
 
-.div2 {
-	bottom: 1%;
-	width: 50%;
-	opacity: 0;
-	left: 50%;
-	float: right;
-	position: absolute;
-	z-index: 100;
-	height: 250px;
-}
-
-.fade-style {
-	opacity: 0.1;
-	display: inline-block;
-	visibility: visible;
-}
