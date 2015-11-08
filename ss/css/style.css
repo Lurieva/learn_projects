@@ -1,0 +1,102 @@
+.form {
+	border: 1px solid gray;
+	border-radius: 8px;
+	padding-top: 20px;
+    cursor: pointer;
+    display: inline-block;
+    float: left;
+    margin-left: 50px;
+}
+
+.invisible {
+	display: none;
+}
+
+#editForm {
+	width: 250px;
+	height: 220px;
+	text-align: right;
+}
+
+#previewForm {
+	width: 180px;
+	height: 150px;
+	text-align: center;
+}
+
+ul {
+	margin-left: -40px;
+	margin-top: -10px;
+	list-style-type: none;
+}
+
+li {
+	float: left;
+	font-style: italic;
+	font-weight: bold;
+}
+
+label {
+	float: left;
+	margin-left: 10px;
+}
+
+span {
+	font-style: italic;
+}
+
+input {
+	margin-left: 10px;
+	margin-right: 10px;
+	margin-bottom: 15px;
+}
+
+.btn {
+	width: 70px;
+	height: 20px;
+	margin-left: 20px;
+	border: 1px solid gray;
+	border-radius: 4px;
+	text-align: center;
+	font-weight: bold;
+	margin-top: 10px;
+	position: absolute;
+}
+
+#save {
+	margin-left: 100px;
+}
+
+#edit {
+	margin-top: 40px;
+}
+
+.button {
+	cursor: pointer;
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+.button:hover {
+    color:  #800080;
+}
+
+#tableContainer {
+	float: left;
+}
+
+
+table {
+    border: 2px solid gray;
+    border-collapse: collapse;
+}
+
+td {
+  	padding: 5px;
+  	padding-left: 10px;
+}
+
+th, tr, td {
+	border: 1px solid gray;
+	text-align: center;
+}
