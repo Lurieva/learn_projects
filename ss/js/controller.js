@@ -1,41 +1,40 @@
 'use strict';
 
-function Controller (nodeGroup, nodeEdit, nodePreview) {
-	var list,
-        group,
-        groupForm,
-        editForm,
-        previewForm;
+function Controller () {
+	var groupView,
+        editView,
+        previewView;
 
-    list = new Group();
-    list.setGroup();
-    if (database.isLocalStorageAvailable) {
-        database.setItem('group', list.getGroup());
-       //database.clearStorage();
+    groupView = new GroupView({
+        el: $('#tableContainer')
+    });
+
+    mediatorInit();
+
+    function mediatorInit() {
+        mediator.subscribe('Module PersonView: edit', renderEditView);
+        mediator.subscribe('Module EditView: preview', renderPreviewView);
+        mediator.subscribe('Module EditView: save', changeGroupView);
     }
 
+    function renderEditView (person) {
+        editView = new EditView({
+            el: $('#editForm'),
+            model: person
+        });
+        editView.render();
+    }
 
-    groupForm = new GroupView(nodeGroup, tableHeaderTpl, tableStringTpl);
-    groupForm.init();
+    function renderPreviewView (person) {
+        previewView = new PreviewView({
+            el: $('#previewForm'),
+            model: person
+        });
+    }
 
-    mediator.subscribe('edit', function (person) {
-        editForm = new EditView(nodeEdit, person, editTpl);
-        editForm.init();
-        nodeEdit.classList.remove('invisible');
-        nodePreview.classList.add('invisible');
-    });
-
-    mediator.subscribe('preview', function (person) {
-        previewForm = new PreviewView(nodePreview, person, previewTpl);
-        previewForm.init();
-        nodeEdit.classList.add('invisible');
-        nodePreview.classList.remove('invisible');
-    });
-
-    mediator.subscribe('save', function () {
-        nodeEdit.classList.add('invisible');
-        //nodeEdit.classList.add('invisible');
-    });
-
+    function changeGroupView (person) {
+        return person;
+    }
+ 
     return this;
 }
