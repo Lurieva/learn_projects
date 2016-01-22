@@ -28,9 +28,10 @@
 
 .btn-help {
 	margin-top: 10px;
+	margin-left: -15px;
 	margin-bottom: 10px;
 }
 
 .btn-help > input {
-	width: 200px;
+	width: 210px;
 }

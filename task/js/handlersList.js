@@ -72,7 +72,7 @@ function toLowerCaseStr (input) {
 	}
 
 	function deleteSpaces (input) {
-		return input.replace(/\s+[^\S]/g, ' ');
+		return input.replace(/\s+[^\S\n]/g, ' ');
 	}
 
 	function deleteTabs (input) {
