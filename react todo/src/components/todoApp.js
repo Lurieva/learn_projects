@@ -41,13 +41,6 @@ var TodoApp = React.createClass({
 		event.stopPropagation();
 	},
 
-	editTodo: function (i) {
-		var todos = this.state.todos;
-		this.setState({
-			inputValue: todos[i].value
-		});
-	},
-
 	changeTodo: function (i) {
 		var todos = this.state.todos;
 		var todo = this.state.todos[i];
@@ -64,8 +57,7 @@ var TodoApp = React.createClass({
 				value={item.value}
 				done={item.done}
 				removeTodo={this.removeTodo.bind(this, i)}
-				changeTodo={this.changeTodo.bind(this, i)}
-				editTodo={this.editTodo.bind(this, i)} />);
+				changeTodo={this.changeTodo.bind(this, i)} />);
 		}.bind(this));
 
 		return (

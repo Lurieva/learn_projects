@@ -9,8 +9,7 @@ var ListTodoItem = React.createClass({
 		
 		return (
 			<li className={defaultClass} 
-				onClick={this.props.changeTodo} 
-				onDoubleClick={this.props.editTodo}>
+				onClick={this.props.changeTodo}>
 				<span className="badge" onClick={this.props.removeTodo}>&times;</span>
 				{this.props.value}
 			</li>
