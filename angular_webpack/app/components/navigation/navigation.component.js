@@ -1,5 +1,5 @@
 //import templateUrl from './navigation.html';
-import controller from './navigation.controller';
+//import controller from './navigation.controller';
 
 let navigationComponent = {
     restrict: 'E',
