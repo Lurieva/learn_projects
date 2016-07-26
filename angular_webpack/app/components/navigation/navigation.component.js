@@ -1,12 +1,10 @@
-import template from './navigation.html';
+//import templateUrl from './navigation.html';
 import controller from './navigation.controller';
 
 let navigationComponent = {
     restrict: 'E',
     bindings: {},
-    template,
-    controller,
-    controllerAs: 'vm'
+    templateUrl: './navigation.html'
 };
 
 export default navigationComponent;

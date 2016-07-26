@@ -1,7 +1,6 @@
 class NavigationController {
     constructor() {
         "ngInject";
-
     }
 }
 

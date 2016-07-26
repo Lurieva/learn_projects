@@ -54,4 +54,4 @@ $stateProvider
 $urlRouterProvider.otherwise('/app/home');
 })
 
-.component('app', []);
+.component('app', AppComponent);
