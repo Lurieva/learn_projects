@@ -1,0 +1,33 @@
+#slide-container {
+    width: 600px;
+    height: 400px;
+    outline: 1px solid;
+    margin: 0 auto;
+
+}
+
+#slide-container img {
+    width: 600px;
+    height: 400px;
+}
+
+.animation-fade.ng-hide-add,
+.animation-fade.ng-hide-remove {
+    /* здесь прописаны эффекты проявления и исчезновения слайда */
+    -webkit-transition: 1s linear all;
+    -moz-transition: 1s linear all;
+    -o-transition: 1s linear all;
+    transition: 1s linear all;
+    display: block !important;
+}
+.animation-fade.ng-hide-add,
+.animation-fade.ng-hide-remove.ng-hide-remove-active {
+    /* это стартовая точка анимации исчезновения и конечная точка анимации проявления */
+    opacity: 1;
+}
+.animation-fade.ng-hide-add.ng-hide-add-active,
+.animation-fade.ng-hide-remove {
+    /* это конечная точка анимации исчезновения и стартовая точка анимации проявления */
+    opacity: 0;
+    position: absolute;
+}

@@ -4,12 +4,13 @@ import uiRouter     from 'angular-ui-router';
 import AppComponent from './app.component';
 
 import NavigationComponent from './components/navigation/navigation';
-
+import HomeComponent from './pages/home/home';
 
 
 angular.module('app', [
         uiRouter,
-        NavigationComponent.name
+        NavigationComponent.name,
+        HomeComponent.name
     ])
     .config(($locationProvider, $stateProvider, $urlRouterProvider) => {
     "ngInject";
@@ -23,12 +24,12 @@ $stateProvider
 
     .state('app.home', {
         url: '/home',
-        template: 'Home page'
+        template: '<home></home>'
     })
 
-    .state('app.create', {
-        url: '/create',
-        template: 'Create page'
+    .state('app.service', {
+        url: '/service',
+        template: 'Service page'
     })
 
     .state('app.faq', {

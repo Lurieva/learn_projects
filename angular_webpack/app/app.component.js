@@ -1,4 +1,4 @@
-import template from './index.html';
+import template from './app.html';
 
 let appComponent = {
     template,
