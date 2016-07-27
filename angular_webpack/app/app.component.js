@@ -1,7 +1,7 @@
-//import template from './index.html';
+import template from './index.html';
 
 let appComponent = {
-    templateUrl: './app.html',
+    template,
     restrict: 'E'
 };
 
