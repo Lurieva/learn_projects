@@ -23,13 +23,12 @@ module.exports = {
                 test: /\.scss$/,
                 loader: 'style!css!sass'
             },
-            /*{
+            {
                 test: /\.js$/,
                 //loader: 'ng-annotate!babel?presets[]=es2015!jshint',
                 loader: 'ng-annotate!babel?presets[]=es2015',
                 exclude: /node_modules|bower_components/
-            },*/
-            { test: /\.js$/, exclude: [/app\/lib/, /node_modules/], loader: 'ng-annotate!babel' },
+            },
             { test: /\.html$/, loader: 'raw' }
         ]
     }
