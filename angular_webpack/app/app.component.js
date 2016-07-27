@@ -1,8 +1,7 @@
 import template from './app.html';
 
 let appComponent = {
-    template,
-    restrict: 'E'
+    template
 };
 
 export default appComponent;
