@@ -11,6 +11,10 @@
     height: 400px;
 }
 
+.help-block {
+    color: red;
+}
+
 .animation-fade.ng-hide-add,
 .animation-fade.ng-hide-remove {
     /* здесь прописаны эффекты проявления и исчезновения слайда */

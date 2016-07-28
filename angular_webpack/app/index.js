@@ -8,10 +8,11 @@ import NavigationComponent from './components/navigation/navigation';
 import HomeComponent from './pages/home/home';
 import SigninComponent from './pages/signin/signin';
 
+import UserService from './services/user.service.js';
 
 angular.module('app', [
         uiRouter,
-        ngAnimate,
+        //ngAnimate,
         NavigationComponent.name,
         HomeComponent.name,
         SigninComponent.name
@@ -55,4 +56,5 @@ $stateProvider
 $urlRouterProvider.otherwise('/app/home');
 })
 
-.component('app', AppComponent);
+.component('app', AppComponent)
+.factory('UserService', UserService);
