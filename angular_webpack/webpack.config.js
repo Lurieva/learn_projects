@@ -1,9 +1,10 @@
 'use strict';
 var webpack = require('webpack'),
-    path = require('path');
+    path = require('path'),
+    WebpackErrorNotificationPlugin = require('webpack-error-notification');
 
-//var APP = __dirname + '/app';
 var APP = path.resolve(__dirname, 'app');
+
 module.exports = {
     context: APP,
     watch: true,
@@ -11,7 +12,8 @@ module.exports = {
         app: ['webpack/hot/dev-server', './core/bootstrap.js']
     },
     plugins: [
-        new webpack.HotModuleReplacementPlugin()
+        new webpack.HotModuleReplacementPlugin(),
+        new WebpackErrorNotificationPlugin()
     ],
     output: {
         path: APP,
@@ -31,4 +33,4 @@ module.exports = {
             { test: /\.html$/, loader: 'raw' }
         ]
     }
-};
+}
