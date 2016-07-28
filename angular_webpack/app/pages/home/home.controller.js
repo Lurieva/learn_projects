@@ -18,6 +18,7 @@ class HomeController {
             }
         ];
         this.total = this.slides.length;
+        this.play();
     }
 
     next() {
@@ -25,9 +26,11 @@ class HomeController {
     }
 
     play() {
+      let _this = this;
+
         this.$timeout(function() {
-            this.next();
-            this.play();
+            _this.next();
+            _this.play();
         }, 1000);
     }
 
