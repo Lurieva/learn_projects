@@ -28,6 +28,7 @@ class SigninController {
     submitForm (isValid) {
         if (isValid) {
             console.info('form is valid');
+            this.reset();
         }
     }
 }

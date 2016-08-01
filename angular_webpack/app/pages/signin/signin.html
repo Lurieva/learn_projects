@@ -30,11 +30,11 @@
                ng-model="$ctrl.user.email"
                g-class="{ 'has-error' : userForm.userEmail.$invalid && !userForm.userEmail.$pristine }"
                required />
-        <p ng-show="userForm.userEmail.$invalid && !userForm.useremail.$pristine" class="help-block">Enter a valid email.</p>
+        <p ng-show="userForm.userEmail.$invalid && !userForm.userEmail.$pristine" class="help-block">Enter a valid email.</p>
         <br>
 
         <label>Phone Number:</label>
-        <input type="text" name="userPhoneNumber" class="form-control" ng-model="$ctrl.user.phoneNumber" ng-minlength="5" ng-maxlength="12" required />
+        <input type="text" name="userPhoneNumber" class="form-control" ng-model="$ctrl.user.phoneNumber" ng-minlength="5" ng-maxlength="12" />
         <br><br>
 
         <button class="btn-lg btn-info" ng-click="$ctrl.reset()">Reset</button>

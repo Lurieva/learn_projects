@@ -4,6 +4,6 @@ import signinComponent          from './signin.component';
 
 let signinModule = angular.module('signin', [])
 
-    .component('signin', signinComponent);
+    .component('signin', signinComponent)
 
 export default signinModule;

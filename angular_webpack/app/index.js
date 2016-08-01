@@ -5,17 +5,18 @@ import ngAnimate    from 'angular-animate';
 import AppComponent from './app.component';
 
 import NavigationComponent from './components/navigation/navigation';
-import HomeComponent from './pages/home/home';
-import SigninComponent from './pages/signin/signin';
+import HomeComponent       from './pages/home/home';
+import SigninComponent     from './pages/signin/signin';
+import ProductsComponent   from './pages/products/products';
 
-import UserService from './services/user.service.js';
+import UserService         from './services/user.service';
 
 angular.module('app', [
         uiRouter,
-        //ngAnimate,
         NavigationComponent.name,
         HomeComponent.name,
-        SigninComponent.name
+        SigninComponent.name,
+        ProductsComponent.name
     ])
     .config(($locationProvider, $stateProvider, $urlRouterProvider) => {
     "ngInject";
@@ -44,7 +45,7 @@ $stateProvider
 
     .state('app.products', {
         url: '/products',
-        template: 'Products Page'
+        template: '<products></products>'
     })
 
     .state('app.signin', {
