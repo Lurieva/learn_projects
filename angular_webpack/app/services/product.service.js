@@ -26,4 +26,4 @@ function ProductService() {
     }
 }
 
-export default UserService;
+export default ProductService;
